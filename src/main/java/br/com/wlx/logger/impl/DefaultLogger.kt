@@ -1,6 +1,6 @@
-package br.com.wlx.log.impl
+package br.com.wlx.logger.impl
 
-import br.com.wlx.log.api.Logger
+import br.com.wlx.logger.api.Logger
 import java.util.logging.Level
 import java.util.logging.Logger as JULogger
 

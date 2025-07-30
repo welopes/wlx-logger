@@ -1,4 +1,4 @@
-package br.com.wlx.log.api
+package br.com.wlx.logger.api
 
 interface Logger {
     fun verbose(message: String)
