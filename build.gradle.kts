@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "br.com.wlx.analytics"
+    namespace = "br.com.wlx.logger"
     compileSdk = 36
 
     defaultConfig {
@@ -35,6 +35,9 @@ android {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+    publishing {
+        singleVariant("release") {}
+    }
 }
 
 dependencies {
@@ -46,12 +49,11 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "com.github.welopes"
-            artifactId = "wlx-logger"
-            version = "0.0.1"
-
             afterEvaluate {
                 from(components["release"])
+                groupId = "com.github.welopes"
+                artifactId = "wlx-logger"
+                version = "0.0.1"
             }
         }
     }
@@ -63,8 +65,6 @@ publishing {
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("GPR_USER")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GPR_TOKEN")
-                println("GPR_USER: ${username}")
-                println("GPR_TOKEN: ${password}")
             }
         }
     }
