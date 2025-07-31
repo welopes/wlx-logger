@@ -1,5 +1,6 @@
 package br.com.wlx.logger.impl
 
+import br.com.wlx.logger.api.LogType
 import br.com.wlx.logger.api.Logger
 import io.mockk.mockk
 import io.mockk.verify
@@ -10,56 +11,71 @@ import java.util.logging.Logger as JULogger
 
 class DefaultLoggerTest {
 
-    private lateinit var julLogger: JULogger
+    private lateinit var mockJulLogger: JULogger
     private lateinit var logger: Logger
 
     @Before
     fun setUp() {
-        julLogger = mockk(relaxed = true)
-        logger = DefaultLoggerTestHelper.createLoggerWithMock(julLogger)
-    }
-
-    @Test
-    fun verboseShouldCallLogWithLevelFinest() {
-        logger.verbose("message")
-        verify { julLogger.log(Level.FINEST, "message") }
+        mockJulLogger = mockk(relaxed = true)
+        logger = DefaultLogger(mockJulLogger)
     }
 
     @Test
     fun debugShouldCallLogWithLevelFine() {
-        logger.debug("message")
-        verify { julLogger.log(Level.FINE, "message") }
+        val msg = "message"
+        logger.debug(msg)
+        verify { mockJulLogger.log(Level.FINE, getMessageWithEmoji(LogType.DEBUG, msg)) }
     }
 
     @Test
     fun infoShouldCallLogWithLevelInfo() {
-        logger.info("message")
-        verify { julLogger.log(Level.INFO, "message") }
+        val msg = "message"
+        logger.info(msg)
+        verify { mockJulLogger.log(Level.INFO, getMessageWithEmoji(LogType.INFO, msg)) }
     }
 
     @Test
     fun warningShouldCallLogWithLevelWarning() {
-        logger.warning("message")
-        verify { julLogger.log(Level.WARNING, "message") }
+        val msg = "message"
+        logger.warn(msg)
+        verify { mockJulLogger.log(Level.WARNING, getMessageWithEmoji(LogType.WARN, msg)) }
+    }
+
+    @Test
+    fun analyticsShouldCallLogWithLevelWarning() {
+        val msg = "message"
+        logger.analytics(msg)
+        verify { mockJulLogger.log(Level.INFO, getMessageWithEmoji(LogType.ANALYTICS, msg)) }
     }
 
     @Test
     fun errorShouldCallLogWithLevelSevereAndThrowable() {
         val throwable = RuntimeException("error")
-        logger.error("message", throwable)
-        verify { julLogger.log(Level.SEVERE, "message", throwable) }
-    }
-}
-
-object DefaultLoggerTestHelper {
-    fun createLoggerWithMock(mockLogger: JULogger): Logger {
-        return object : Logger {
-            override fun verbose(message: String) = mockLogger.log(Level.FINEST, message)
-            override fun debug(message: String) = mockLogger.log(Level.FINE, message)
-            override fun info(message: String) = mockLogger.log(Level.INFO, message)
-            override fun warning(message: String) = mockLogger.log(Level.WARNING, message)
-            override fun error(message: String, throwable: Throwable?) =
-                mockLogger.log(Level.SEVERE, message, throwable)
+        logger.error(throwable)
+        verify {
+            mockJulLogger.log(
+                Level.SEVERE,
+                getMessageWithEmoji(LogType.ERROR, throwable.message ?: ""),
+                throwable
+            )
         }
+    }
+
+    @Test
+    fun errorShouldCallLogWithLevelSevereAndMessageAndThrowable() {
+        val msg = "message"
+        val throwable = RuntimeException("error")
+        logger.error(msg, throwable)
+        verify {
+            mockJulLogger.log(
+                Level.SEVERE,
+                getMessageWithEmoji(LogType.ERROR, msg),
+                throwable
+            )
+        }
+    }
+
+    private fun getMessageWithEmoji(level: LogType, message: String): String {
+        return "${level.getEmojiByType()} $message"
     }
 }

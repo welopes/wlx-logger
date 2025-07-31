@@ -1,31 +1,47 @@
 package br.com.wlx.logger.impl
 
+import br.com.wlx.logger.api.LogType
 import br.com.wlx.logger.api.Logger
-import java.util.logging.Level
 import java.util.logging.Logger as JULogger
 
-class DefaultLogger private constructor(
-    private val tag: String
+class DefaultLogger(
+    val logger: JULogger
 ) : Logger {
 
-    private val logger: JULogger = JULogger.getLogger(tag)
-
-    init {
-        logger.useParentHandlers = true
+    override fun debug(message: String) {
+        log(LogType.DEBUG, message)
     }
 
-    override fun verbose(message: String) = logger.log(Level.FINEST, message)
+    override fun info(message: String) {
+        log(LogType.INFO, message)
+    }
 
-    override fun debug(message: String) = logger.log(Level.FINE, message)
+    override fun warn(message: String) {
+        log(LogType.WARN, message)
+    }
 
-    override fun info(message: String) = logger.log(Level.INFO, message)
+    override fun analytics(message: String) {
+        log(LogType.ANALYTICS, message)
+    }
 
-    override fun warning(message: String) = logger.log(Level.WARNING, message)
+    override fun error(throwable: Throwable) {
+        log(LogType.ERROR, throwable.message ?: "", throwable)
+    }
 
-    override fun error(message: String, throwable: Throwable?) =
-        logger.log(Level.SEVERE, message, throwable)
+    override fun error(message: String, throwable: Throwable?) {
+        log(LogType.ERROR, message, throwable)
+    }
 
-    companion object {
-        fun get(tag: String): Logger = DefaultLogger(tag)
+    override fun log(
+        level: LogType,
+        message: String,
+        throwable: Throwable?
+    ) {
+        val msg = "${level.getEmojiByType()} $message"
+        if (throwable != null) {
+            logger.log(level.loggerLevel, msg, throwable)
+        } else {
+            logger.log(level.loggerLevel, msg)
+        }
     }
 }
