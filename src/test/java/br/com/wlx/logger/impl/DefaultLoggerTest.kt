@@ -21,6 +21,13 @@ class DefaultLoggerTest {
     }
 
     @Test
+    fun verboseShouldCallLogWithLevelFine() {
+        val msg = "message"
+        logger.verbose(msg)
+        verify { mockJulLogger.log(Level.FINEST, getMessageWithEmoji(LogType.VERBOSE, msg)) }
+    }
+
+    @Test
     fun debugShouldCallLogWithLevelFine() {
         val msg = "message"
         logger.debug(msg)
@@ -45,7 +52,7 @@ class DefaultLoggerTest {
     fun analyticsShouldCallLogWithLevelWarning() {
         val msg = "message"
         logger.analytics(msg)
-        verify { mockJulLogger.log(Level.INFO, getMessageWithEmoji(LogType.ANALYTICS, msg)) }
+        verify { mockJulLogger.log(Level.CONFIG, getMessageWithEmoji(LogType.ANALYTICS, msg)) }
     }
 
     @Test
@@ -70,6 +77,33 @@ class DefaultLoggerTest {
             mockJulLogger.log(
                 Level.SEVERE,
                 getMessageWithEmoji(LogType.ERROR, msg),
+                throwable
+            )
+        }
+    }
+
+    @Test
+    fun fatalShouldCallLogWithLevelSevereAndThrowable() {
+        val throwable = RuntimeException("error")
+        logger.fatal(throwable)
+        verify {
+            mockJulLogger.log(
+                Level.SEVERE,
+                getMessageWithEmoji(LogType.FATAL, throwable.message ?: ""),
+                throwable
+            )
+        }
+    }
+
+    @Test
+    fun fatalShouldCallLogWithLevelSevereAndMessageAndThrowable() {
+        val msg = "message"
+        val throwable = RuntimeException("error")
+        logger.fatal(msg, throwable)
+        verify {
+            mockJulLogger.log(
+                Level.SEVERE,
+                getMessageWithEmoji(LogType.FATAL, msg),
                 throwable
             )
         }

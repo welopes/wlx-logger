@@ -7,6 +7,9 @@ import java.util.logging.Logger as JULogger
 class DefaultLogger(
     val logger: JULogger
 ) : Logger {
+    override fun verbose(message: String) {
+        log(LogType.VERBOSE, message)
+    }
 
     override fun debug(message: String) {
         log(LogType.DEBUG, message)
@@ -16,12 +19,12 @@ class DefaultLogger(
         log(LogType.INFO, message)
     }
 
-    override fun warn(message: String) {
-        log(LogType.WARN, message)
-    }
-
     override fun analytics(message: String) {
         log(LogType.ANALYTICS, message)
+    }
+
+    override fun warn(message: String) {
+        log(LogType.WARN, message)
     }
 
     override fun error(throwable: Throwable) {
@@ -30,6 +33,14 @@ class DefaultLogger(
 
     override fun error(message: String, throwable: Throwable?) {
         log(LogType.ERROR, message, throwable)
+    }
+
+    override fun fatal(throwable: Throwable) {
+        log(LogType.FATAL, throwable.message ?: "", throwable)
+    }
+
+    override fun fatal(message: String, throwable: Throwable?) {
+        log(LogType.FATAL, message, throwable)
     }
 
     override fun log(
