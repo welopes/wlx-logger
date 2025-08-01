@@ -1,13 +1,12 @@
 package br.com.wlx.logger.impl
 
-import android.util.Log
 import br.com.wlx.logger.api.LogType
 import br.com.wlx.logger.api.Logger
+import timber.log.Timber
 
-class DefaultLogger(private val currentTag: String? = null) : Logger {
-
+class TimberLogger(private val currentTag: String? = null) : Logger {
     override fun tag(tag: String): Logger {
-        return DefaultLogger(tag)
+        return TimberLogger(tag)
     }
 
     override fun verbose(message: String) {
@@ -46,22 +45,19 @@ class DefaultLogger(private val currentTag: String? = null) : Logger {
         log(LogType.FATAL, message, throwable)
     }
 
-    override fun log(
-        level: LogType,
-        message: String,
-        throwable: Throwable?
-    ) {
+    override fun log(level: LogType, message: String, throwable: Throwable?) {
         val msg = "${level.getEmojiByType()} $message"
-        val tag = currentTag ?: "DefaultLogger"
+
+        val timber = currentTag?.let { Timber.tag(it) } ?: Timber
 
         when (level) {
-            LogType.VERBOSE -> Log.v(tag, msg, throwable)
-            LogType.DEBUG -> Log.d(tag, msg, throwable)
-            LogType.INFO -> Log.i(tag, msg, throwable)
-            LogType.ANALYTICS -> Log.i(tag, msg, throwable)
-            LogType.WARN -> Log.w(tag, msg, throwable)
-            LogType.ERROR -> Log.e(tag, msg, throwable)
-            LogType.FATAL -> Log.wtf(tag, msg, throwable)
+            LogType.VERBOSE -> timber.v(throwable, msg)
+            LogType.DEBUG -> timber.d(throwable, msg)
+            LogType.INFO -> timber.i(throwable, msg)
+            LogType.ANALYTICS -> timber.i(throwable, msg)
+            LogType.WARN -> timber.w(throwable, msg)
+            LogType.ERROR -> timber.e(throwable, msg)
+            LogType.FATAL -> timber.e(throwable, msg)
         }
     }
 }

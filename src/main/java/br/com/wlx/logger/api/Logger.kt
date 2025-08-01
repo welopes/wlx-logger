@@ -1,6 +1,7 @@
 package br.com.wlx.logger.api
 
 interface Logger {
+    fun tag(tag: String): Logger
     fun verbose(message: String)
     fun debug(message: String)
     fun info(message: String)

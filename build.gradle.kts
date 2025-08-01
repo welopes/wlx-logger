@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.timber)
+
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     androidTestImplementation(libs.androidx.junit)
