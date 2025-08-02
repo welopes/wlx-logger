@@ -6,9 +6,7 @@ import br.com.wlx.logger.api.Logger
 
 class DefaultLogger(private val currentTag: String? = null) : Logger {
 
-    override fun tag(tag: String): Logger {
-        return DefaultLogger(tag)
-    }
+    override fun tag(tag: String): Logger = DefaultLogger(tag)
 
     override fun verbose(message: String) {
         log(LogType.VERBOSE, message)
@@ -47,14 +45,14 @@ class DefaultLogger(private val currentTag: String? = null) : Logger {
     }
 
     override fun log(
-        level: LogType,
+        logType: LogType,
         message: String,
         throwable: Throwable?
     ) {
-        val msg = "${level.getEmojiByType()} $message"
+        val msg = "${logType.getEmojiByType()} $message"
         val tag = currentTag ?: "DefaultLogger"
 
-        when (level) {
+        when (logType) {
             LogType.VERBOSE -> Log.v(tag, msg, throwable)
             LogType.DEBUG -> Log.d(tag, msg, throwable)
             LogType.INFO -> Log.i(tag, msg, throwable)

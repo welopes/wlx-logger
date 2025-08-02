@@ -11,5 +11,5 @@ interface Logger {
     fun error(message: String, throwable: Throwable? = null)
     fun fatal(throwable: Throwable)
     fun fatal(message: String, throwable: Throwable? = null)
-    fun log(level: LogType, message: String, throwable: Throwable? = null)
+    fun log(logType: LogType, message: String, throwable: Throwable? = null)
 }
