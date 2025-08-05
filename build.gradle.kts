@@ -5,3 +5,8 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
 }
+
+extra["compileSdkVersion"] = 36
+extra["minSdkVersion"] = 26
+extra["javaVersionCompatibility"] = JavaVersion.VERSION_11
+extra["jvmTarget"] = JvmTarget.JVM_11

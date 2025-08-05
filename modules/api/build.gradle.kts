@@ -8,10 +8,10 @@ plugins {
 
 android {
     namespace = "br.com.wlx.logger.api"
-    compileSdk = 36
+    compileSdk = rootProject.extra["compileSdkVersion"] as Int
 
     defaultConfig {
-        minSdk = 26
+        minSdk = rootProject.extra["minSdkVersion"] as Int
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -27,12 +27,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = rootProject.extra["javaVersionCompatibility"] as JavaVersion
+        targetCompatibility = rootProject.extra["javaVersionCompatibility"] as JavaVersion
     }
     kotlin {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(rootProject.extra["jvmTarget"] as JvmTarget)
         }
     }
     publishing {
