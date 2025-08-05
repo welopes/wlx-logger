@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class br.com.wlx.logger.impl.DefaultLogger { public <init>(); }
+-keep class br.com.wlx.logger.impl.TimberLogger { public <init>(); }
+-keep class br.com.wlx.logger.impl.JulLogger { public <init>(); }
+
+-dontwarn timber.**
