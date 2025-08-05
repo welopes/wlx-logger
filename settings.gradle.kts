@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "wlx-logger"
-include(":src")
- 
+include(":modules:api")
+include(":modules:impl")
