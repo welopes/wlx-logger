@@ -53,7 +53,8 @@ logger.error("Unhandled exception", exception)
 Wellington Eliel Lopes
 Senior Android Developer | Kotlin | Jetpack Compose | Clean Architecture
 
-I’m passionate about building scalable, maintainable, and developer-friendly tools for Android. WLX Logger is part of my personal toolkit — a showcase of my approach to clean architecture, modularization, and abstraction.
+> I’m passionate about building scalable, maintainable, and developer-friendly tools for Android.
+> **WLX Logger** is part of my personal toolkit — a showcase of my approach to clean architecture, modularization, and abstraction.
 
 📍 [GitHub](https://github.com/welopes) • [LinkedIn](https://www.linkedin.com/in/welopes)
 
