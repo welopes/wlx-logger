@@ -5,7 +5,7 @@
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Status](https://img.shields.io/badge/Status-Active-success)]()
 
-**wlx-logger** is a lightweight and elegant Kotlin logging library designed to make application logging more readable, structured, and developer-friendly.  
+**WLX Logger** is a lightweight and elegant Kotlin logging library designed to make application logging more readable, structured, and developer-friendly.  
 It was created as part of my professional toolkit to simplify log management across projects.
 
 ---
