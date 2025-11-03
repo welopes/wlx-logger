@@ -22,7 +22,7 @@ It provides a small yet powerful API for structured logs with optional tagging, 
 
 ---
 
-## 💻 Example Usage
+## ⚙️ Usage Example
 
 ```kotlin
 val logger = WlxLogger(tag = "MainActivity")
@@ -31,3 +31,32 @@ logger.debug("App started successfully")
 logger.info("User logged in with ID: $userId")
 logger.warn("Low memory warning")
 logger.error("Unhandled exception", exception)
+
+```
+## 🧩 Roadmap
+
+- Default dependency injection setup
+- Support for Sentry and Amplitude
+- Offline event queue
+- Sample Android app demo
+
+## 👨‍💻 Author
+
+Wellington Eliel Lopes
+Senior Android Developer | Kotlin | Jetpack Compose | Clean Architecture
+
+I’m passionate about creating scalable, maintainable, and developer-friendly tools for Android.
+wlx-analytics is part of my personal toolkit — a demonstration of my approach to clean architecture, modularization, and abstraction.
+
+📍 [GitHub](https://github.com/welopes) • [LinkedIn](https://www.linkedin.com/in/welopes)
+
+
+## 🪪 License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+You may share and adapt this code for non-commercial purposes, as long as proper credit is given.
+
+🔗 Read the full license here
+
+© 2025 Wellington Eliel Lopes — Licensed under CC BY-NC 4.0
+
