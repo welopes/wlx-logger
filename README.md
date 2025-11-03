@@ -37,6 +37,7 @@ logger.info("User logged in with ID: $userId")
 logger.warn("Low memory warning")
 logger.error("Unhandled exception", exception)
 ```
+---
 
 ## 🧩 Roadmap
 
@@ -45,23 +46,32 @@ logger.error("Unhandled exception", exception)
 - Offline event queue
 - Sample Android app demo
 
+---
+
 ## 👨‍💻 Author
 
 Wellington Eliel Lopes
 Senior Android Developer | Kotlin | Jetpack Compose | Clean Architecture
 
-I’m passionate about creating scalable, maintainable, and developer-friendly tools for Android.
-wlx-logger is part of my personal toolkit — a demonstration of my approach to clean architecture, modularization, and abstraction.
+I’m passionate about building scalable, maintainable, and developer-friendly tools for Android. WLX Logger is part of my personal toolkit — a showcase of my approach to clean architecture, modularization, and abstraction.
 
 📍 [GitHub](https://github.com/welopes) • [LinkedIn](https://www.linkedin.com/in/welopes)
 
+---
 
-## 🪪 License
+## 🛡️ License
 
-This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
-You may share and adapt this code for non-commercial purposes, as long as proper credit is given.
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license.
 
-🔗 Read the full license here
+You are free to:
 
-© 2025 Wellington Eliel Lopes — Licensed under CC BY-NC 4.0
+- Share
+- Adapt
+
+**As long as you:**
+
+- Give appropriate credit to the original author
+- **Do not use it for commercial purposes**
+
+More info: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
 
