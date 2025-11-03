@@ -1,5 +1,10 @@
 # 🧩 wlx-logger
 
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9-blue?logo=kotlin)](https://kotlinlang.org/)
+[![Android](https://img.shields.io/badge/Android-Library-green?logo=android)](https://developer.android.com)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Status](https://img.shields.io/badge/Status-Active-success)]()
+
 **wlx-logger** is a lightweight and elegant Kotlin logging library designed to make application logging more readable, structured, and developer-friendly.  
 It was created as part of my professional toolkit to simplify log management across projects.
 
@@ -22,7 +27,7 @@ It provides a small yet powerful API for structured logs with optional tagging, 
 
 ---
 
-## ⚙️ Usage Example
+## 💻 Usage Example
 
 ```kotlin
 val logger = WlxLogger(tag = "MainActivity")
@@ -31,8 +36,8 @@ logger.debug("App started successfully")
 logger.info("User logged in with ID: $userId")
 logger.warn("Low memory warning")
 logger.error("Unhandled exception", exception)
-
 ```
+
 ## 🧩 Roadmap
 
 - Default dependency injection setup
@@ -46,7 +51,7 @@ Wellington Eliel Lopes
 Senior Android Developer | Kotlin | Jetpack Compose | Clean Architecture
 
 I’m passionate about creating scalable, maintainable, and developer-friendly tools for Android.
-wlx-analytics is part of my personal toolkit — a demonstration of my approach to clean architecture, modularization, and abstraction.
+wlx-logger is part of my personal toolkit — a demonstration of my approach to clean architecture, modularization, and abstraction.
 
 📍 [GitHub](https://github.com/welopes) • [LinkedIn](https://www.linkedin.com/in/welopes)
 
